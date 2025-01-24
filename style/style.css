@@ -1,0 +1,217 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  width: 1144px;
+  display: flex;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-add {
+  margin: 30px 0;
+  padding: 10px 20px;
+  width: 100%;
+  border-radius: 10px;
+  background-color: #fff9eb;
+  display: grid;
+  grid-template-columns: 50% 20% 20%;
+  -moz-column-gap: 10px;
+       column-gap: 10px;
+  align-items: center;
+}
+.form-add .input-part {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+.form-add .input-part input {
+  height: 40px;
+  padding-left: 10px;
+  border: 0;
+  border-radius: 10px;
+  color: #e34432;
+  font-family: "Nunito", serif;
+  font-weight: 700;
+  font-size: 15px;
+}
+.form-add .input-part ::-moz-placeholder {
+  color: #e34432;
+  font-family: "Nunito", serif;
+  font-weight: 700;
+  font-size: 15px;
+}
+.form-add .input-part ::placeholder {
+  color: #e34432;
+  font-family: "Nunito", serif;
+  font-weight: 700;
+  font-size: 15px;
+}
+.form-add .input-part input:focus {
+  outline: none;
+  border: 3px solid #e34432;
+}
+.form-add .select-part {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  border-radius: 10px;
+  height: 100%;
+  width: 70%;
+}
+.form-add .select-part select {
+  height: 70%;
+  width: 70%;
+  border: 0;
+  color: #e34432;
+  font-family: "Nunito", serif;
+  font-weight: 700;
+  font-size: 23px;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background: url("../images/arrow-down-svgrepo-com.svg") no-repeat 96%/30px;
+}
+.form-add .select-part select:focus {
+  outline: none;
+}
+.form-add .select-part option {
+  color: #e34432;
+  font-family: "Nunito", serif;
+  font-weight: 700;
+  font-size: 15px;
+}
+.form-add .button-part {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.form-add .button-part button {
+  width: 100%;
+  height: 70px;
+  border: 0;
+  border-radius: 10px;
+  color: #ffffff;
+  font-family: "Nunito", serif;
+  background-color: #e34432;
+  font-family: "Nunito", serif;
+  font-weight: 700;
+  font-size: 23px;
+}
+
+.filter-box {
+  width: 100%;
+  background-color: #e34432;
+  padding: 10px 50px;
+  border-radius: 10px;
+}
+
+.form-search {
+  display: flex;
+  justify-content: space-between;
+}
+.form-search select {
+  border: 0;
+  color: #ffffff;
+  width: 10%;
+  font-family: "Nunito", serif;
+  font-weight: 700;
+  font-size: 23px;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background: url("../images/arrow.png") no-repeat 96%/20px;
+}
+.form-search option {
+  background-color: #e34432;
+  font-family: "Nunito", serif;
+  font-weight: 700;
+  font-size: 15px;
+}
+.form-search select:focus {
+  outline: none;
+}
+.form-search input {
+  height: 40px;
+  width: 50%;
+  padding-left: 10px;
+  border: 0;
+  border-radius: 10px;
+  color: #ffffff;
+  background-color: #e34432;
+  border: 3px solid #ffffff;
+  font-family: "Nunito", serif;
+  font-weight: 700;
+  font-size: 15px;
+}
+.form-search ::-moz-placeholder {
+  color: #ffffff;
+  font-family: "Nunito", serif;
+  font-weight: 700;
+  font-size: 15px;
+}
+.form-search ::placeholder {
+  color: #ffffff;
+  font-family: "Nunito", serif;
+  font-weight: 700;
+  font-size: 15px;
+}
+.form-search input:focus {
+  outline: none;
+}
+.form-search button {
+  width: 10%;
+  border: 0;
+  border-radius: 10px;
+  color: #e34432;
+  font-family: "Nunito", serif;
+  background-color: #ffffff;
+  font-family: "Nunito", serif;
+  font-weight: 700;
+  font-size: 23px;
+}
+
+.list {
+  background-color: #fff9eb;
+  margin-top: 30px;
+  border-radius: 10px;
+  padding: 10px 50px;
+}
+.list li {
+  font-family: "Nunito", serif;
+  font-weight: 700;
+  font-size: 23px;
+  display: grid;
+  grid-template-columns: 90% 10%;
+  align-items: center;
+  padding: 15px 0;
+  justify-items: stretch;
+}
+.list li .text-part {
+  display: grid;
+  grid-template-columns: 15% 55% 15%;
+  align-items: center;
+  justify-items: center;
+  text-align: start;
+}
+.list li .status-text {
+  color: #e34432;
+}
+.list li button {
+  width: 80px;
+  height: 80px;
+  border: 0;
+  border-radius: 10px;
+  color: #ffffff;
+  font-family: "Nunito", serif;
+  background-color: #e34432;
+  font-family: "Nunito", serif;
+  font-weight: 700;
+  font-size: 20px;
+}/*# sourceMappingURL=style.css.map */

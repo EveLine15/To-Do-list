@@ -1,0 +1,209 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+$font: "Nunito", serif;
+
+@mixin font($text-weight, $text-size){
+    font-family: $font;
+    font-weight: $text-weight;
+    font-size: $text-size;
+}
+
+.container{
+    width: 1144px;
+    display: flex;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-add{
+    margin: 30px 0;
+    padding: 10px 20px;
+    width: 100%;
+    border-radius: 10px;
+    background-color: #fff9eb;
+    display: grid;
+    grid-template-columns: 50% 20% 20%;
+    column-gap: 10px;
+    align-items: center;
+
+    .input-part{
+        display: flex;
+        flex-direction: column;
+        row-gap: 10px;
+
+        input{
+            height: 40px;
+            padding-left: 10px;
+            border: 0;
+            border-radius: 10px;
+            color:#e34432;
+            @include font(700, 15px);
+        }
+
+        ::placeholder{
+            color:#e34432;
+            @include font(700, 15px);
+        }
+
+        input:focus {
+            outline: none;
+            border: 3px solid #e34432;
+     }
+    }
+
+    .select-part{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #ffffff;
+        border-radius: 10px;
+        height: 100%;
+        width: 70%;
+
+        select{
+            height: 70%;
+            width: 70%;
+            border: 0;
+            
+            color:#e34432;
+            @include font(700, 23px);
+            appearance: none;
+            
+            background: url("../images/arrow-down-svgrepo-com.svg") no-repeat 96% / 30px;
+        }
+
+        select:focus{
+            outline: none;
+        }
+    
+        option{
+            color:#e34432;
+            @include font(700, 15px);
+        }
+    }
+
+    .button-part{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        button{
+            width: 100%;
+            height: 70px;
+            border: 0;
+            border-radius: 10px;
+            color: #ffffff;
+            font-family: $font;
+            background-color:#e34432;
+            @include font(700, 23px);
+        }
+    }
+    
+}
+
+.filter-box{
+    width: 100%;
+    background-color: #e34432;
+    padding: 10px 50px;
+    border-radius: 10px;
+}
+
+.form-search{
+    display: flex;
+    justify-content: space-between;
+
+    select{
+        border: 0;
+        color:#ffffff;
+        width: 10%;
+        @include font(700, 23px);
+        appearance: none;
+        background: url("../images/arrow.png") no-repeat 96% / 20px;
+    }
+
+    option{
+        background-color: #e34432;
+        @include font(700, 15px);
+    }
+
+    select:focus{
+        outline: none;
+    }
+
+    input{
+        height: 40px;
+        width: 50%;
+        padding-left: 10px;
+        border: 0;
+        border-radius: 10px;
+        color:#ffffff;
+        background-color: #e34432;
+        border: 3px solid #ffffff;
+        @include font(700, 15px);
+    }
+
+    ::placeholder{
+        color:#ffffff;
+        @include font(700, 15px);
+    }
+
+    input:focus {
+        outline: none;
+    }
+
+    button{
+        width: 10%;
+        border: 0;
+        border-radius: 10px;
+        color:#e34432;
+        font-family: $font;
+        background-color:#ffffff;
+        @include font(700, 23px);
+    }
+}
+
+.list{
+    background-color: #fff9eb;
+    margin-top: 30px;
+    border-radius: 10px;
+    padding: 10px 50px;
+
+    li{
+        @include font(700, 23px);
+        display: grid;
+        grid-template-columns: 90% 10%;
+        align-items: center;
+        padding: 15px 0;
+        justify-items:stretch;
+
+        .text-part{
+            display: grid;
+            grid-template-columns: 15% 55% 15%;
+            align-items: center;
+            justify-items: center;
+            text-align: start;
+        }
+
+        .status-text{
+            color: #e34432;
+        }
+
+        button{
+            width: 80px;
+            height: 80px;
+            border: 0;
+            border-radius: 10px;
+            color: #ffffff;
+            font-family: $font;
+            background-color:#e34432;
+            @include font(700, 20px);
+        }
+    }
+}

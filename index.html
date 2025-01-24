@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style/style.css">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <form action="#" class="form-add">
+                <div class="input-part">
+                    <input type="text" required placeholder="Name of your task" id="name">
+                    <input type="text" required placeholder="Discription" id="textholder">
+                </div>
+                <div class="select-part">
+                    <select name="status" id="status" required id="status">
+                        <option value="" hidden>Status</option>
+                        <option value="Open">Open</option>
+                        <option value="Closed">Closed</option>
+                        <option value="Critical">Critical</option>
+                    </select>
+                </div>
+                <div class="button-part">
+                    <button id="add-task">Add task</button>
+                </div>
+            </form>
+
+            <div class="filter-box">
+                <form action="#" class="form-search">
+                    <select name="status" id="status-search" required>
+                        <option value="" hidden>Status</option>
+                        <option value="Open">Open</option>
+                        <option value="Closed">Closed</option>
+                        <option value="Critical">Critical</option>
+                    </select>
+                    <input type="text" required placeholder="Discription">
+                    <button>Search</button>
+                </form>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <div class="list">
+                <ul>
+                    <li>
+                        <div class="text-part">
+                            <p>DO smth</p>
+                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quae repudiandae quasi enim fugiat earum? Voluptatibus?</p>
+                            <p class="status-text">Open</p>
+                        </div>
+                        <button id="delete-task">Delete</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </main>
+    <script src="./script.js"></script>
+</body>
+</html>
