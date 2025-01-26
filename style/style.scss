@@ -206,4 +206,8 @@ $font: "Nunito", serif;
             @include font(700, 20px);
         }
     }
+
+    .lable-li{
+        @include font(700, 15px);
+    }
 }
