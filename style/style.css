@@ -219,4 +219,19 @@
   font-family: "Nunito", serif;
   font-weight: 700;
   font-size: 15px;
+}
+
+.empty-list {
+  margin: 15px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  -moz-column-gap: 10px;
+       column-gap: 10px;
+}
+.empty-list p {
+  font-family: "Nunito", serif;
+  font-weight: 700;
+  font-size: 20px;
+  color: rgb(110, 108, 108);
 }/*# sourceMappingURL=style.css.map */

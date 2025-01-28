@@ -211,3 +211,17 @@ $font: "Nunito", serif;
         @include font(700, 15px);
     }
 }
+
+.empty-list{
+    margin: 15px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 10px;
+
+    p{
+        @include font(700, 20px);
+        color: rgb(110, 108, 108);
+    }
+
+}

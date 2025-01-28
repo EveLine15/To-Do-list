@@ -15,41 +15,53 @@ const options = {
         year: 'numeric'
     }
 
-const ul = document.querySelector('ul');
+
+const listBox = document.querySelector('.list');
 
 let mainTaskArray = [];
 
+//доббавление элемента в общий массив
 addBtn.addEventListener('click', (event) => {
     event.preventDefault();
     mainTaskArray.push({number: mainTaskArray.length, name: namefield.value, description: textholder.value, status: statusPosition.value, date: currentDate.toLocaleString('ru-RU', options)});
     changeLayout(mainTaskArray);
 });
 
+//фильтрация по имени или статусу
 searchBtn.addEventListener('click', (event) => {
     event.preventDefault();
     changeLayout(createFilteredList(mainTaskArray));
 });
 
+//отрисовка экрана
 function changeLayout(taskArray){
-    console.log('Array in changeLayout: ', taskArray);
-    ul.innerHTML = `<li>
-                        <div class="lable-li text-part">
-                            <p>Name</p>
-                            <p>Description</p>
-                            <p>Date</p>
-                            <p>Status</p>
-                        </div>
-                    </li>`;
-    taskArray.forEach((element, index) => {
-        createElement(index, taskArray);
-        addDeleteOnBtns(taskArray);
-    });
-    
+    //нарисовать шапку
+    listBox.innerHTML = `<ul>
+                            <li>
+                                <div class="lable-li text-part">
+                                    <p>Name</p>
+                                    <p>Description</p>
+                                    <p>Date</p>
+                                    <p>Status</p>
+                                </div>
+                            </li>
+                        </ul>`;
+
+        //добавить надпись, что лист пуст, иначе отрисовать элементы (задачи)
+         if (taskArray.length === 0){
+            listBox.innerHTML += `<div class="empty-list">
+                                    <p>Your list is empty</p>
+                                    <img src="./images/icons8-sad-ghost-48.png" alt="sad-ghost">
+                                /div>`;
+        } 
+        else{
+            for (const index in taskArray) createElement(index, taskArray);
+            addDeleteOnBtns(taskArray);
+        }
 }
 
+//добавление задачи на экран
 function createElement(numberOfElement, taskArray){
-    console.log('Task array filtered: ', taskArray);
-    console.log('Number of element: ', numberOfElement);
     const li = `<li id="${numberOfElement}-li">
                     <div class="text-part">
                         <p>${taskArray[numberOfElement].name}</p>
@@ -59,27 +71,37 @@ function createElement(numberOfElement, taskArray){
                     </div>
                     <button id="${numberOfElement}" class="delete-task">Delete</button>
                 </li>`;
+                
+    const ul = document.querySelector('ul');
     ul.innerHTML += li; 
 }
 
-function addDeleteOnBtns(taskArray){
+//добавление addEventListener на каждую кнопку
+function addDeleteOnBtns(taskArray){ 
     const deleteBtns = document.querySelectorAll('.delete-task');
+    const ul = document.querySelector('ul');
+
+    //удаление элемента (задачи) из DOM и из общего массива
     deleteBtns.forEach(deleteBtn => {
         deleteBtn.addEventListener('click', (event) => {
             event.preventDefault();
             const li = document.getElementById(`${deleteBtn.id}-li`);
             ul.removeChild(li);
-            console.log("deleteBtn.id: "+deleteBtn.id);
-            console.log(taskArray.findIndex(element => element.number == deleteBtn.id));
-            taskArray.splice(taskArray.findIndex(element => element.number == deleteBtn.id), 1);   
-            console.log(taskArray);
+            taskArray.splice(taskArray.findIndex(element => element.number == deleteBtn.id), 1); 
+
+            if (taskArray.length === 0){
+                listBox.innerHTML += `<div class="empty-list">
+                                    <p>Your list is empty</p>
+                                    <img src="./images/icons8-sad-ghost-48.png" alt="sad-ghost">
+                                </div>`;
+            } 
         });
     }); 
 }
 
+//создание нового массива, в котором содержаться элементы, которые удовлетворяют условиям
 function createFilteredList(taskArray){
     filteredtaskArray = [];
-    filteredtaskArray = taskArray.filter(element => (element.description === searchTextholder.value || searchTextholder.value === '') && (element.status === searchStatus.value || searchStatus.value === ''));
-    console.log('filtered: ',filteredtaskArray);
+    filteredtaskArray = taskArray.filter(element => (element.name === searchTextholder.value || searchTextholder.value === '') && (element.status === searchStatus.value || searchStatus.value === ''));
     return filteredtaskArray;
 }
