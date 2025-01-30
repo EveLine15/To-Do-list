@@ -29,7 +29,7 @@ $font: "Nunito", serif;
     border-radius: 10px;
     background-color: #fff9eb;
     display: grid;
-    grid-template-columns: 50% 20% 20%;
+    grid-template-columns: 50% 50%;
     column-gap: 10px;
     align-items: center;
 
@@ -56,37 +56,7 @@ $font: "Nunito", serif;
             outline: none;
             border: 3px solid #e34432;
      }
-    }
 
-    .select-part{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: #ffffff;
-        border-radius: 10px;
-        height: 100%;
-        width: 70%;
-
-        select{
-            height: 70%;
-            width: 70%;
-            border: 0;
-            
-            color:#e34432;
-            @include font(700, 23px);
-            appearance: none;
-            
-            background: url("../images/arrow-down-svgrepo-com.svg") no-repeat 96% / 30px;
-        }
-
-        select:focus{
-            outline: none;
-        }
-    
-        option{
-            color:#e34432;
-            @include font(700, 15px);
-        }
     }
 
     .button-part{
@@ -108,6 +78,17 @@ $font: "Nunito", serif;
     
 }
 
+.error-message{
+    display: flex;
+    justify-content: center;
+    padding-bottom: 15px;
+    @include font(700, 20px);
+}
+
+.none{
+    display: none;
+}
+
 .filter-box{
     width: 100%;
     background-color: #e34432;
@@ -122,10 +103,10 @@ $font: "Nunito", serif;
     select{
         border: 0;
         color:#ffffff;
-        width: 10%;
+        width: 15%;
         @include font(700, 23px);
         appearance: none;
-        background: url("../images/arrow.png") no-repeat 96% / 20px;
+        background: url("../images/arrow.png") no-repeat 98% / 20px;
     }
 
     option{
@@ -157,16 +138,6 @@ $font: "Nunito", serif;
     input:focus {
         outline: none;
     }
-
-    button{
-        width: 10%;
-        border: 0;
-        border-radius: 10px;
-        color:#e34432;
-        font-family: $font;
-        background-color:#ffffff;
-        @include font(700, 23px);
-    }
 }
 
 .list{
@@ -185,14 +156,18 @@ $font: "Nunito", serif;
 
         .text-part{
             display: grid;
-            grid-template-columns: 15% 40% 15% 15%;
+            grid-template-columns: 15% 35% 15% 15%;
             align-items: center;
             justify-items: center;
             text-align: start;
+            column-gap: 20px;
         }
 
-        .status-text{
-            color: #e34432;
+        .checkbox-status{
+            accent-color: #e34432;
+            width: 30px;
+            height: 39px;
+            background-color: #fff9eb;
         }
 
         button{
@@ -204,6 +179,26 @@ $font: "Nunito", serif;
             font-family: $font;
             background-color:#e34432;
             @include font(700, 20px);
+        }
+
+        input{
+            height: 50px;
+            width: 100%;
+            padding-left: 10px;
+            border: 0;
+            border-radius: 10px;
+            color:#000000;
+            background-color: #ffffff;
+            @include font(700, 23px);
+        }
+    
+        ::placeholder{
+            color:#c4c4c4;
+            @include font(700, 23px);
+        }
+    
+        input:focus {
+            outline: none;
         }
     }
 

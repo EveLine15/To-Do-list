@@ -11,32 +11,25 @@
         <div class="container">
             <form action="#" class="form-add">
                 <div class="input-part">
-                    <input type="text" required placeholder="Name of your task" id="name">
-                    <input type="text" required placeholder="Description" id="textholder">
-                </div>
-                <div class="select-part">
-                    <select name="status" id="status" required>
-                        <option value="" hidden>Status</option>
-                        <option value="Open">Open</option>
-                        <option value="Closed">Closed</option>
-                        <option value="Critical">Critical</option>
-                    </select>
+                    <input type="text" placeholder="Name of your task" id="name">
+                    <input type="text" placeholder="Description" id="textholder">
                 </div>
                 <div class="button-part">
-                    <button id="add-task">Add task</button>
+                    <button id="add-task" type="submit">Add task</button>
                 </div>
             </form>
+
+            
+            <div class="error-message none"><p>Fill in all fieldes!</p></div>
 
             <div class="filter-box">
                 <form action="#" class="form-search">
                     <select name="status-search" id="status-search" required>
-                        <option value="">Status</option>
-                        <option value="Open">Open</option>
-                        <option value="Closed">Closed</option>
-                        <option value="Critical">Critical</option>
+                        <option value="Status">Status</option>
+                        <option value="active">Active</option>
+                        <option value="completed">Completed</option>
                     </select>
-                    <input type="text" required placeholder="Name of searching task" id="textholder-search">
-                    <button id="search-btn">Search</button>
+                    <input type="text" placeholder="Name of searching task" id="textholder-search">
                 </form>
             </div>
         </div>

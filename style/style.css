@@ -20,7 +20,7 @@
   border-radius: 10px;
   background-color: #fff9eb;
   display: grid;
-  grid-template-columns: 50% 20% 20%;
+  grid-template-columns: 50% 50%;
   -moz-column-gap: 10px;
        column-gap: 10px;
   align-items: center;
@@ -56,37 +56,6 @@
   outline: none;
   border: 3px solid #e34432;
 }
-.form-add .select-part {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #ffffff;
-  border-radius: 10px;
-  height: 100%;
-  width: 70%;
-}
-.form-add .select-part select {
-  height: 70%;
-  width: 70%;
-  border: 0;
-  color: #e34432;
-  font-family: "Nunito", serif;
-  font-weight: 700;
-  font-size: 23px;
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
-  background: url("../images/arrow-down-svgrepo-com.svg") no-repeat 96%/30px;
-}
-.form-add .select-part select:focus {
-  outline: none;
-}
-.form-add .select-part option {
-  color: #e34432;
-  font-family: "Nunito", serif;
-  font-weight: 700;
-  font-size: 15px;
-}
 .form-add .button-part {
   display: flex;
   align-items: center;
@@ -105,6 +74,19 @@
   font-size: 23px;
 }
 
+.error-message {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 15px;
+  font-family: "Nunito", serif;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.none {
+  display: none;
+}
+
 .filter-box {
   width: 100%;
   background-color: #e34432;
@@ -119,14 +101,14 @@
 .form-search select {
   border: 0;
   color: #ffffff;
-  width: 10%;
+  width: 15%;
   font-family: "Nunito", serif;
   font-weight: 700;
   font-size: 23px;
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
-  background: url("../images/arrow.png") no-repeat 96%/20px;
+  background: url("../images/arrow.png") no-repeat 98%/20px;
 }
 .form-search option {
   background-color: #e34432;
@@ -165,17 +147,6 @@
 .form-search input:focus {
   outline: none;
 }
-.form-search button {
-  width: 10%;
-  border: 0;
-  border-radius: 10px;
-  color: #e34432;
-  font-family: "Nunito", serif;
-  background-color: #ffffff;
-  font-family: "Nunito", serif;
-  font-weight: 700;
-  font-size: 23px;
-}
 
 .list {
   background-color: #fff9eb;
@@ -195,13 +166,18 @@
 }
 .list li .text-part {
   display: grid;
-  grid-template-columns: 15% 40% 15% 15%;
+  grid-template-columns: 15% 35% 15% 15%;
   align-items: center;
   justify-items: center;
   text-align: start;
+  -moz-column-gap: 20px;
+       column-gap: 20px;
 }
-.list li .status-text {
-  color: #e34432;
+.list li .checkbox-status {
+  accent-color: #e34432;
+  width: 30px;
+  height: 39px;
+  background-color: #fff9eb;
 }
 .list li button {
   width: 80px;
@@ -214,6 +190,33 @@
   font-family: "Nunito", serif;
   font-weight: 700;
   font-size: 20px;
+}
+.list li input {
+  height: 50px;
+  width: 100%;
+  padding-left: 10px;
+  border: 0;
+  border-radius: 10px;
+  color: #000000;
+  background-color: #ffffff;
+  font-family: "Nunito", serif;
+  font-weight: 700;
+  font-size: 23px;
+}
+.list li ::-moz-placeholder {
+  color: #c4c4c4;
+  font-family: "Nunito", serif;
+  font-weight: 700;
+  font-size: 23px;
+}
+.list li ::placeholder {
+  color: #c4c4c4;
+  font-family: "Nunito", serif;
+  font-weight: 700;
+  font-size: 23px;
+}
+.list li input:focus {
+  outline: none;
 }
 .list .lable-li {
   font-family: "Nunito", serif;

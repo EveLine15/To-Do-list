@@ -1,13 +1,16 @@
 const namefield = document.getElementById('name');
 const textholder = document.getElementById('textholder');
-const statusPosition = document.getElementById('status');
-const addBtn = document.getElementById('add-task');
+const addForm = document.querySelector('.form-add');
 
-const searchBtn = document.getElementById('search-btn');
 const searchStatus = document.getElementById('status-search');
 const searchTextholder = document.getElementById('textholder-search');
 
-const currentDate = new Date();
+const errorMessage = document.querySelector('.error-message');
+
+const listBox = document.querySelector('.list');
+
+// const nameText = document.querySelector('.name-field');
+// const inputField = document.querySelector('.input-field');
 
 const options = {
         day: 'numeric',
@@ -15,22 +18,17 @@ const options = {
         year: 'numeric'
     }
 
-
-const listBox = document.querySelector('.list');
-
 let mainTaskArray = [];
 
 //доббавление элемента в общий массив
-addBtn.addEventListener('click', (event) => {
+addForm.addEventListener('submit', (event) => {
     event.preventDefault();
-    mainTaskArray.push({number: mainTaskArray.length, name: namefield.value, description: textholder.value, status: statusPosition.value, date: currentDate.toLocaleString('ru-RU', options)});
+    if(!namefield.value || !textholder.value) return errorMessage.classList.remove('none');
+    else errorMessage.classList.add('none');
+    const currentDate = new Date();
+    mainTaskArray.push({number: mainTaskArray.length + 1, name: namefield.value, description: textholder.value, date: currentDate.toLocaleString('ru-RU', options), status: 'active'});
     changeLayout(mainTaskArray);
-});
-
-//фильтрация по имени или статусу
-searchBtn.addEventListener('click', (event) => {
-    event.preventDefault();
-    changeLayout(createFilteredList(mainTaskArray));
+    addForm.reset();
 });
 
 //отрисовка экрана
@@ -52,56 +50,98 @@ function changeLayout(taskArray){
             listBox.innerHTML += `<div class="empty-list">
                                     <p>Your list is empty</p>
                                     <img src="./images/icons8-sad-ghost-48.png" alt="sad-ghost">
-                                /div>`;
+                                </div>`;
         } 
-        else{
-            for (const index in taskArray) createElement(index, taskArray);
-            addDeleteOnBtns(taskArray);
-        }
+        taskArray.forEach(item => createElement(item));
 }
 
 //добавление задачи на экран
-function createElement(numberOfElement, taskArray){
-    const li = `<li id="${numberOfElement}-li">
+function createElement({number, name, description, date, status}){
+    const li = document.createElement('li');
+    li.innerHTML = `
                     <div class="text-part">
-                        <p>${taskArray[numberOfElement].name}</p>
-                        <p>${taskArray[numberOfElement].description}</p>
-                        <p>${taskArray[numberOfElement].date}</p>
-                        <p class="status-text">${taskArray[numberOfElement].status}</p>
+                        <p class="name-field" id="${number}-nameText">${name}</p>
+                        <input type="text" class="input-field none" id="${number}-nameText-input" placeholder="${name}">
+                        <p>${description}</p>
+                        <p>${date}</p>
+                        <input type="checkbox" id="${number}" ${status === 'completed' ? "checked" : null} class="checkbox-status">
                     </div>
-                    <button id="${numberOfElement}" class="delete-task">Delete</button>
-                </li>`;
+                    <button id="${number}" class="delete-task">Delete</button>`;
                 
     const ul = document.querySelector('ul');
-    ul.innerHTML += li; 
+    ul.appendChild(li);
 }
 
-//добавление addEventListener на каждую кнопку
-function addDeleteOnBtns(taskArray){ 
-    const deleteBtns = document.querySelectorAll('.delete-task');
-    const ul = document.querySelector('ul');
+// удаление
+listBox.addEventListener('click', (event) => {
+    if(event.target.classList.contains('delete-task')){
+        const { id } = event.target;
+        mainTaskArray = mainTaskArray.filter(item => item.number !== +id);
+        changeLayout(mainTaskArray);
+    }
 
-    //удаление элемента (задачи) из DOM и из общего массива
-    deleteBtns.forEach(deleteBtn => {
-        deleteBtn.addEventListener('click', (event) => {
-            event.preventDefault();
-            const li = document.getElementById(`${deleteBtn.id}-li`);
-            ul.removeChild(li);
-            taskArray.splice(taskArray.findIndex(element => element.number == deleteBtn.id), 1); 
-
-            if (taskArray.length === 0){
-                listBox.innerHTML += `<div class="empty-list">
-                                    <p>Your list is empty</p>
-                                    <img src="./images/icons8-sad-ghost-48.png" alt="sad-ghost">
-                                </div>`;
-            } 
+    if(event.target.classList.contains('checkbox-status')){
+        const { id } = event.target;
+        mainTaskArray = mainTaskArray.map( item => {
+            if (item.number === +id) {
+                item.status = item.status === "active" ? "completed" : "active";
+            }
+            return item;
         });
-    }); 
-}
+        changeLayout(mainTaskArray);
+    }
+});
 
-//создание нового массива, в котором содержаться элементы, которые удовлетворяют условиям
-function createFilteredList(taskArray){
-    filteredtaskArray = [];
-    filteredtaskArray = taskArray.filter(element => (element.name === searchTextholder.value || searchTextholder.value === '') && (element.status === searchStatus.value || searchStatus.value === ''));
-    return filteredtaskArray;
-}
+searchTextholder.addEventListener('input', (event) => {
+    if(event.target.value.length > 2){
+        const search = event.target.value.toLowerCase();
+        const filter = mainTaskArray.filter(item => item.name.toLowerCase().includes(search));
+        changeLayout(filter);
+        return;
+    }
+    changeLayout(mainTaskArray);
+})
+
+searchStatus.addEventListener("input", (event) => {
+    const { value } = event.target;
+    if (value === "Status") {
+        changeLayout(mainTaskArray);
+        return;
+    }
+    const filter = mainTaskArray.filter(item => item.status === value);
+    changeLayout(filter);
+});
+
+listBox.addEventListener('dblclick', (event) => {
+    if(event.target.classList.contains("name-field")){
+        const { id } = event.target;
+        const nameText = document.getElementById(id);
+        nameText.classList.add('none');
+        const inputField = document.getElementById(`${id}-input`);
+        inputField.classList.remove('none');
+        inputField.focus();
+
+        inputField.addEventListener("blur", changeInput);
+
+        inputField.addEventListener('keydown', (event) => {
+            if(event.key === 'Enter'){
+                changeInput();
+            }
+        });
+
+        function changeInput(){
+            const number = parseInt(id, 10);
+            if(inputField.value !== ''){
+
+                mainTaskArray[number-1].name = inputField.value;
+                nameText.innerText = inputField.value;
+                
+            }
+            nameText.classList.remove('none');
+            inputField.classList.add('none');            
+            console.log(mainTaskArray);
+        }
+
+    }
+});
+
