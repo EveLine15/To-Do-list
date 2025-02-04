@@ -8,7 +8,7 @@ const searchTextholder = document.getElementById('textholder-search');
 const errorMessage = document.querySelector('.error-message');
 
 const listBox = document.querySelector('.list');
-
+const list = document.querySelector('.new-list');
 const options = {
         day: 'numeric',
         month: 'numeric',
@@ -30,18 +30,6 @@ addForm.addEventListener('submit', (event) => {
 
 //отрисовка экрана
 function changeLayout(taskArray){
-    //нарисовать шапку
-    listBox.innerHTML = `<ul>
-                            <li>
-                                <div class="lable-li text-part">
-                                    <p>Name</p>
-                                    <p>Description</p>
-                                    <p>Date</p>
-                                    <p>Status</p>
-                                </div>
-                            </li>
-                        </ul>`;
-
         //добавить надпись, что лист пуст, иначе отрисовать элементы (задачи)
          if (taskArray.length === 0){
             listBox.innerHTML += `<div class="empty-list">
@@ -65,8 +53,7 @@ function createElement({number, name, description, date, status}){
                     </div>
                     <button id="${number}" class="delete-task">Delete</button>`;
                 
-    const ul = document.querySelector('ul');
-    ul.appendChild(li);
+    list.appendChild(li);
 }
 
 // удаление
@@ -115,8 +102,7 @@ searchStatus.addEventListener("input", (event) => {
 listBox.addEventListener('dblclick', (event) => {
     if(event.target.classList.contains("name-field")){
         const { id } = event.target;
-        const nameText = document.getElementById(id);
-        nameText.classList.add('none');
+        event.target.classList.add('none');
         const inputField = document.getElementById(`${id}-input`);
         inputField.classList.remove('none');
         inputField.focus();
@@ -134,10 +120,10 @@ listBox.addEventListener('dblclick', (event) => {
             if(inputField.value !== ''){
 
                 mainTaskArray[number-1].name = inputField.value;
-                nameText.innerText = inputField.value;
+                event.target.innerText = inputField.value;
 
             }
-            nameText.classList.remove('none');
+            event.target.classList.remove('none');
             inputField.classList.add('none');            
             console.log(mainTaskArray);
         }
