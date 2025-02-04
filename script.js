@@ -9,9 +9,6 @@ const errorMessage = document.querySelector('.error-message');
 
 const listBox = document.querySelector('.list');
 
-// const nameText = document.querySelector('.name-field');
-// const inputField = document.querySelector('.input-field');
-
 const options = {
         day: 'numeric',
         month: 'numeric',
@@ -92,6 +89,7 @@ listBox.addEventListener('click', (event) => {
     }
 });
 
+//фильтрация по имени
 searchTextholder.addEventListener('input', (event) => {
     if(event.target.value.length > 2){
         const search = event.target.value.toLowerCase();
@@ -102,6 +100,7 @@ searchTextholder.addEventListener('input', (event) => {
     changeLayout(mainTaskArray);
 })
 
+//фильтрация по статусу
 searchStatus.addEventListener("input", (event) => {
     const { value } = event.target;
     if (value === "Status") {
@@ -112,6 +111,7 @@ searchStatus.addEventListener("input", (event) => {
     changeLayout(filter);
 });
 
+//изменение имени при двойном клике
 listBox.addEventListener('dblclick', (event) => {
     if(event.target.classList.contains("name-field")){
         const { id } = event.target;
@@ -135,7 +135,7 @@ listBox.addEventListener('dblclick', (event) => {
 
                 mainTaskArray[number-1].name = inputField.value;
                 nameText.innerText = inputField.value;
-                
+
             }
             nameText.classList.remove('none');
             inputField.classList.add('none');            
