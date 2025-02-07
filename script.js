@@ -9,6 +9,8 @@ const errorMessage = document.querySelector('.error-message');
 
 const listBox = document.querySelector('.list');
 const list = document.querySelector('.new-list');
+
+const emptyList = listBox.querySelector('.empty-list');
 const options = {
         day: 'numeric',
         month: 'numeric',
@@ -17,6 +19,12 @@ const options = {
 
 let mainTaskArray = [];
 
+if(localStorage.mainTaskArrayStorage){
+    console.log('Local storage load')
+    mainTaskArray = JSON.parse(localStorage.mainTaskArrayStorage);
+    changeLayout(mainTaskArray);
+}
+
 //доббавление элемента в общий массив
 addForm.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -24,19 +32,26 @@ addForm.addEventListener('submit', (event) => {
     else errorMessage.classList.add('none');
     const currentDate = new Date();
     mainTaskArray.push({number: mainTaskArray.length + 1, name: namefield.value, description: textholder.value, date: currentDate.toLocaleString('ru-RU', options), status: 'active'});
+    
+    localStorage.mainTaskArrayStorage = JSON.stringify(mainTaskArray);
+
+    console.log(JSON.stringify(mainTaskArray));
+
     changeLayout(mainTaskArray);
     addForm.reset();
 });
 
 //отрисовка экрана
 function changeLayout(taskArray){
+    console.log(taskArray)
         //добавить надпись, что лист пуст, иначе отрисовать элементы (задачи)
          if (taskArray.length === 0){
-            listBox.innerHTML += `<div class="empty-list">
-                                    <p>Your list is empty</p>
-                                    <img src="./images/icons8-sad-ghost-48.png" alt="sad-ghost">
-                                </div>`;
+            emptyList.style.display = 'flex';
         } 
+
+        else emptyList.style.display = 'none';
+        
+        list.innerHTML = '';
         taskArray.forEach(item => createElement(item));
 }
 
@@ -61,6 +76,7 @@ listBox.addEventListener('click', (event) => {
     if(event.target.classList.contains('delete-task')){
         const { id } = event.target;
         mainTaskArray = mainTaskArray.filter(item => item.number !== +id);
+        localStorage.mainTaskArrayStorage = JSON.stringify(mainTaskArray);
         changeLayout(mainTaskArray);
     }
 
@@ -72,6 +88,7 @@ listBox.addEventListener('click', (event) => {
             }
             return item;
         });
+        localStorage.mainTaskArrayStorage = JSON.stringify(mainTaskArray);
         changeLayout(mainTaskArray);
     }
 });
@@ -121,6 +138,8 @@ listBox.addEventListener('dblclick', (event) => {
 
                 mainTaskArray[number-1].name = inputField.value;
                 event.target.innerText = inputField.value;
+
+                localStorage.mainTaskArrayStorage = JSON.stringify(mainTaskArray);
 
             }
             event.target.classList.remove('none');
